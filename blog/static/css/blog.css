@@ -1,9 +1,16 @@
+.page-header {
+  background-color: #009933;
+  margin-top: 0;
+  padding: 20px 20px 20px 40px;
+}
 h1 a {
-  color: #FCA205;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
 }
 p {
   color: red;
 }
 body {
     padding-left: 15px;
+    padding-right: 15px;
 }
