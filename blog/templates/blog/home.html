@@ -3,6 +3,18 @@
     <title>.:Kofran's Blog:.</title>
   </head>
   <body>
-    <h1>Inicio</h1>
+    <div class="">
+      <h1><a href="/">kofran's Blog</a></h1>
+    </div>
+    <div class="">
+      <h2>Inicio</h2>
+    </div>
+    {% for post in posts %}
+      <div class="">
+        <h3><a href="">{{ post.title}}</a></h3>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <p>Publicado: {{ post.published_date }}</p>
+      </div>
+    {% endfor %}
   </body>
 </html>
