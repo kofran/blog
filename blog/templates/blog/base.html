@@ -19,7 +19,9 @@
   </head>
   <body>
     <div class="page-header">
-      <a href="{% url 'post_new' %}" class="top-menu">Nuevo post <samp class="glyphicon glyphicon-plus"></samp></a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'post_new' %}" class="top-menu">Nuevo post <samp class="glyphicon glyphicon-plus"></samp></a>
+      {% endif %}
       <h1><a href="/">Kofran's Blog</a></h1>
     </div>
     <div class="">
