@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Post
-from .forms import PostForm
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 
 # Create your views here.
 
@@ -12,7 +12,12 @@ def home(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    comments = Comment.objects.filter(postid=pk)
+    return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments})
+
+# def comments(request):
+#     comments = Comment.objects().order_by('published_date')
+#     return render(request, 'blog/post_detail.html', {})
 
 def post_new(request):
     if request.method == "POST":
