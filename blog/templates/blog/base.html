@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
     <title>.:Kofran's Blog:.</title>
 
@@ -13,21 +13,84 @@
 
     <!-- css statico -->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
     <!-- google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata|Rock+Salt" rel="stylesheet">
+
+    <!-- fontawesome -->
+    <script src="https://use.fontawesome.com/569f4b09d7.js"></script>
+
   </head>
   <body>
-    <div class="page-header">
-      {% if user.is_authenticated %}
-        <a href="{% url 'post_new' %}" class="top-menu">Nuevo post <samp class="glyphicon glyphicon-plus"></samp></a>
-      {% endif %}
-      <h1><a href="/">Kofran's Blog</a></h1>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6">
+            <h1 class="logo"><a href="/">Kofran's Blog</a></h1>
+            <h6><a href="/">blog.kofran.com</a></h6>
+          </div>
+          <div class="col-sm-6">
+            <ul class="social-header list-inline text-xs-right">
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="menu-bar text-xs-left">
+        <div class="container" role="menu">
+          <ul class="menu-list list-inline">
+            <li class="list-inline-item">
+              <a href="/">Inicio</a>
+            </li>
+            <li class="list-inline-item">
+              {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}" class="top-menu">Nuevo post <samp class="glyphicon glyphicon-plus"></samp></a>
+              {% endif %}
+            </li>
+          </ul>
+
+
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      {% block content %}
+      {% endblock %}
     </div>
-    <!-- <div class="">
-      <h1>Inicio</h1>
-    </div> -->
-    {% block content %}
-    {% endblock %}
+
     <footer class="footer">
       <div class="container">
         <p class="text-muted">Development Version 0.1 - Kofran's Blog © Copyright 2017 - <a href="https://github.com/kofran/blog" target="_blank">Source Code</a></p>
