@@ -15,3 +15,5 @@ At the moment the blog has a very little features like:
 ### What kind of features are planned for next version?
 - register & login system.
 - comments for logged users.
+
+### Django version >= 1.11
