@@ -67,6 +67,9 @@
                 {% if user.is_authenticated %}
                   <p>¡Bienvenido {{ user.username }}!</p>
                 {% endif %}
+                {% if user.is_anonymous %}
+                  <a href="signup">¡Registrate!</a>
+                {% endif %}
               </li>
             </ul>
           </div>
