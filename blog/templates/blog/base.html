@@ -75,11 +75,24 @@
             <li class="list-inline-item">
               <a href="/">Inicio</a>
             </li>
+            {% if user.is_anonymous %}
+              <li class="list-inline-item">
+                <a href="/login">Iniciar Sesión</a>
+              </li>
+            {% endif %}
             <li class="list-inline-item">
-              {% if user.is_authenticated %}
-                <a href="{% url 'post_new' %}" class="top-menu">Nuevo post <samp class="glyphicon glyphicon-plus"></samp></a>
+              {% if perms.post.can_add %}
+                {% if user.is_authenticated %}
+                  <a href="{% url 'post_new' %}" class="top-menu">Nuevo post <samp class="glyphicon glyphicon-plus"></samp></a>
+                {% endif %}
               {% endif %}
+
             </li>
+            {% if user.is_authenticated %}
+              <li class="list-inline-item">
+                <a href="/logout">Cerrar Sesión</a>
+              </li>
+            {% endif %}
           </ul>
 
 

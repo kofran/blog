@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from django.utils import timezone
+from django.contrib.auth.decorators import permission_required
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
@@ -11,14 +14,22 @@ def home(request):
     return render(request, 'blog/home.html', {'posts': posts})
 
 def post_detail(request, pk):
+
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(postid=pk)
-    return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments})
+    form = CommentForm(request.POST,)
 
-# def comments(request):
-#     comments = Comment.objects().order_by('published_date')
-#     return render(request, 'blog/post_detail.html', {})
+    if form.is_valid():
 
+        comment = form.save(commit=False)
+        comment.author = request.user
+        comment.postid = Post.objects.get(pk=pk)
+        comment.save()
+        return redirect('post_detail', pk=post.pk)
+    return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments, 'form': form})
+
+@login_required(login_url='/login')
+@permission_required('post.can_add', login_url='/login/')
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -32,6 +43,8 @@ def post_new(request):
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
 
+@login_required(login_url='/login')
+@permission_required('post.can_change', login_url='/login/')
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -45,3 +58,6 @@ def post_edit(request, pk):
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+
+def login(request):
+    return render(request, 'blog/login.html', {})

@@ -22,7 +22,19 @@
           <b>{{ comment.author}} dijo:</b></br>
           {{ comment.text }}</br></br>
         {% endfor %}
+    {% if user.is_anonymous %}
+      <a href="/login"><h5>Inicia sesión para comentar</h5></a>
+    {% endif %}
   </div>
+  {% if user.is_authenticated %}
+    <div class="makecomment">
+      <form class="post-form" method="POST">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit" class="save btn btn-default">Save</button>
+      </form>
+    </div>
+  {% endif %}
 {% endblock %}
 
 <!-- {% block comment %}
