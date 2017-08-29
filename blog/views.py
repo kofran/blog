@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.utils import timezone
 from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
 
@@ -61,3 +62,17 @@ def post_edit(request, pk):
 
 def login(request):
     return render(request, 'blog/login.html', {})
+    
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            # user = authenticate(username=username, password=raw_password)
+            # login(request, user)
+            return redirect('/login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'blog/signup.html', {'form': form})

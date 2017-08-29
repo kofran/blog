@@ -1,7 +1,9 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.auth.views import login, logout
+from blog import views as signup
 from django.contrib.auth import views as auth_views
+
 from . import views
 
 
@@ -13,4 +15,5 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': '/'}, name='logout'),
     url(r'^accounts/profile/$', views.home, name='home'),
+    url(r'^signup/$', signup.signup, name='signup'),
 ]
