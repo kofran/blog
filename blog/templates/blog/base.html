@@ -71,6 +71,11 @@
                   <a href="signup">¡Registrate!</a>
                 {% endif %}
               </li>
+              <li class="list-inline-item">
+                {% if user.is_staff %}
+                  <a href="/admin">Administración</a>
+                {% endif %}
+              </li>
             </ul>
           </div>
 

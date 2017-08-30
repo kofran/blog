@@ -16,4 +16,6 @@ At the moment the blog has a very little features like:
 - register & login system.
 - comments for logged users.
 
-### Django version >= 1.11
+### Requeriments
+Django version >= 1.11
+python-decouple 3.1
