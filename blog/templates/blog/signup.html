@@ -5,6 +5,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <div class="g-recaptcha" data-sitekey="6Ld10S4UAAAAAA7unEks_0dGNpK5Lci4QeIfT9QD"></div>
     <button type="submit">Sign up</button>
   </form>
 {% endblock %}

@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 from django.utils import timezone
 from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.forms import UserCreationForm
 from .models import Post, Comment
-from .forms import PostForm, CommentForm
-
+from .forms import PostForm, CommentForm, SignUpForm
+from .decorators import check_recaptcha
 # Create your views here.
 
 def home(request):
@@ -62,17 +62,19 @@ def post_edit(request, pk):
 
 def login(request):
     return render(request, 'blog/login.html', {})
-    
+
+@check_recaptcha
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
+        form = SignUpForm(request.POST)
+        if form.is_valid() and request.recaptcha_is_valid:
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
+            # messages.success(request, 'New comment added with success!')
             # user = authenticate(username=username, password=raw_password)
             # login(request, user)
             return redirect('/login')
     else:
-        form = UserCreationForm()
+        form = SignUpForm()
     return render(request, 'blog/signup.html', {'form': form})
