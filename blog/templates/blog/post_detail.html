@@ -17,15 +17,20 @@
   </div>
   <!-- div para los comentarios -->
   <div class="comment">
-    <h3>Comentarios:</h3>
-        {% for comment in comments %}
-          <ul class="list-group">
-            <li class="list-group-item">
-              <i><b>{{ comment.author}}</b> dijo el {{ comment.published_date|date:"j/n/Y" }} a las {{ comment.published_date|time:"H:i:s"}}:</i></br>
-              {{ comment.text }}
-            </li>
-          </ul>
-        {% endfor %}
+    {% if comments %}
+      <h3>Comentarios:</h3>
+      {% for comment in comments %}
+        <ul class="list-group">
+          <li class="list-group-item">
+            <i><b>{{ comment.author}}</b> dijo el {{ comment.published_date|date:"j/n/Y" }} a las {{ comment.published_date|time:"H:i:s"}}:</i></br>
+            {{ comment.text }}
+          </li>
+        </ul>
+      {% endfor %}
+    {% else %}
+      <p><b>No hay comentarios... ¡se el primero!</b></p>
+    {% endif %}
+  
     {% if user.is_anonymous %}
       <a href="/login"><h5>Inicia sesión para comentar</h5></a>
     {% endif %}
