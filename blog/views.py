@@ -25,6 +25,7 @@ def post_detail(request, pk):
         comment = form.save(commit=False)
         comment.author = request.user
         comment.postid = Post.objects.get(pk=pk)
+        comment.published_date = timezone.now()
         comment.save()
         return redirect('post_detail', pk=post.pk)
     return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments, 'form': form})
