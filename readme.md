@@ -17,7 +17,7 @@ At the moment the blog has a very little features like:
 - comments for logged users.
 
 ### Requeriments
-Django version >= 1.11
+Django version >= 1.11 .
 python-decouple 3.1
 
 ### Important
