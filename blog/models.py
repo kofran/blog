@@ -23,7 +23,7 @@ class Post(models.Model):
 class Comment(models.Model):
     author = models.ForeignKey('auth.User') # id del autor
     postid = models.ForeignKey('Post') # id del post
-    text = models.TextField() # contenido del comentarios
+    text = models.TextField(max_length=2048) # contenido del comentarios
     created_date = models.DateTimeField(default=timezone.now) # fecha de creacion
     published_date = models.DateTimeField(blank=True, null=True) # fecha de publicacion
 
