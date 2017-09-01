@@ -12,7 +12,7 @@
         <span class="glyphicon glyphicon-pencil"></span>
       </a>
     {% endif %}
-    <h2>{{ post.title}}</h2>
+    <h2>{{ post.title|title}}</h2>
     <p>{{ post.text|safe|linebreaksbr }}</p>
   </div>
   <!-- div para los comentarios -->
@@ -40,6 +40,7 @@
       <form class="post-form" method="POST">
         {% csrf_token %}
         {{ form.as_p}}
+        <p><i>* se admiten hasta 2048 caracteres</i></p>
         <button type="submit" class="save btn btn-default">Save</button>
       </form>
     </div>

@@ -4,7 +4,7 @@
   {% for post in posts %}
     <div class="">
       <!-- <h3><a href="">{{ post.title}}</a></h3> -->
-      <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title}}</a></h3>
+      <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title|title}}</a></h3>
       <!-- <p>{{ post.text|linebreaksbr }}</p> -->
       <p>{{ post.text|safe|linebreaksbr|slice:"255" }}</p>
       <p><a href="{% url 'post_detail' pk=post.pk %}">(Leer mas...)</a></p>
