@@ -120,8 +120,9 @@
           {% endblock %}
         </div>
         <div class="col-sm-4">
-          <h4>Right panel</h4>
-
+          {% block rightpanel %}
+            {% include "blog/rightpanel.html" %}
+          {% endblock %}
         </div>
       </div>
 

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'text')
+        fields = ('title', 'text', 'category')
 
 # formulario para realizar comentarios en los Posts
 class CommentForm(forms.ModelForm):

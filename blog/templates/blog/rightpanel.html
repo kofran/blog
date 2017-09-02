@@ -1,0 +1,8 @@
+<h4>Categorías</h4>
+{% for category in categorylist %}
+<ul class="list-group">
+  <li class="list-group-item">
+    <a href="/{{ category|safeseq|join:", " }}">{{ category|safeseq|join:", "|upper }}</a>
+  </li>
+</ul>
+{% endfor %}
