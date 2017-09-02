@@ -6,15 +6,14 @@
       <div class="date">
         Publicado el {{ post.published_date|date:"j/n/Y" }} por {{ post.author }}
       </div>
-
-
     {% endif %}
+
     <h2>{{ post.title|title}}
-      {% endif %}
+      {% if user.is_staff %}
         <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-default">
           <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
         </a>
-      {% if user.is_staff %}
+      {% endif %}
 
     </h2>
     <p>{{ post.text|safe|linebreaksbr }}</p>
