@@ -18,6 +18,7 @@ At the moment the blog has a very little features like:
 ### Requeriments
 - Django version >= 1.11 .
 - Python-decouple 3.1 .
+- Requests 2.18.4 .
 
 ### Important
 Raname **.env.example** to **.env**.
