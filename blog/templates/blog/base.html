@@ -66,15 +66,15 @@
               </li>
               <li class="list-inline-item">
                 {% if user.is_authenticated %}
-                  <p>¡Bienvenido {{ user.username }}!</p>
+                  <p>¡Hola {{ user.username }}!</p>
                 {% endif %}
                 {% if user.is_anonymous %}
-                  <a href="/signup">¡Registrate!</a>
+                  <a href="/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> ¡Registrate!</a>
                 {% endif %}
               </li>
               <li class="list-inline-item">
                 {% if user.is_staff %}
-                  <a href="/admin">Administración</a>
+                  <a href="/admin"><i class="fa fa-unlock" aria-hidden="true"></i></a>
                 {% endif %}
               </li>
             </ul>
@@ -87,24 +87,24 @@
         <div class="container" role="menu">
           <ul class="menu-list list-inline">
             <li class="list-inline-item">
-              <a href="/">Inicio</a>
+              <a href="/"><i class="fa fa-home" aria-hidden="true"></i> Inicio</a>
             </li>
             {% if user.is_anonymous %}
               <li class="list-inline-item">
-                <a href="/login">Iniciar Sesión</a>
+                <a href="/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Iniciar Sesión</a>
               </li>
             {% endif %}
             <li class="list-inline-item">
               {% if perms.post.can_add %}
                 {% if user.is_authenticated %}
-                  <a href="{% url 'post_new' %}" class="top-menu">Nuevo post <samp class="glyphicon glyphicon-plus"></samp></a>
+                  <a href="{% url 'post_new' %}" class="top-menu"><i class="fa fa-plus" aria-hidden="true"></i> Nuevo post</a>
                 {% endif %}
               {% endif %}
 
             </li>
             {% if user.is_authenticated %}
               <li class="list-inline-item">
-                <a href="/logout">Cerrar Sesión</a>
+                <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Cerrar Sesión</a>
               </li>
             {% endif %}
           </ul>
@@ -129,7 +129,7 @@
 
     <footer class="footer">
       <div class="container">
-        <span class="text-muted">Development Version 0.1 - Kofran's Blog © Copyright 2017 - <a href="https://github.com/kofran/blog" target="_blank">Source Code</a></span>
+        <span class="text-muted">Development Version 0.2 - Kofran's Blog <i class="fa fa-copyright" aria-hidden="true"></i> Copyright 2017 - <a href="https://github.com/kofran/blog" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> Source Code</a></span>
 
 
       </div>
