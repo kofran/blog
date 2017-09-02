@@ -110,3 +110,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'blog/signup.html', {'form': form})
+def logout(request):
+    logout(request)
+    return render(request, 'blog/home.html', {})
