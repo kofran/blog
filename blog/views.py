@@ -28,6 +28,20 @@ def home(request):
         posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/home.html', {'posts': posts})
 
+def category(request, category):
+    postslist = Post.objects.filter(category__contains=category).order_by('published_date').reverse()
+    #postslist = (Post.objects.filter(category=category, published_date__lte=timezone.now()).
+    #        order_by('published_date').reverse())
+    page = request.GET.get('page', 1)
+    paginator = Paginator(postslist, 5)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'blog/category.html', {'posts': posts})
+
 def post_detail(request, pk):
 
     post = get_object_or_404(Post, pk=pk)
