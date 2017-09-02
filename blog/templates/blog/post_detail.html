@@ -7,12 +7,14 @@
         Publicado el {{ post.published_date|date:"j/n/Y" }} por {{ post.author }}
       </div>
     {% endif %}
-    {% if user.is_authenticated %}
-      <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-default">
-        <span class="glyphicon glyphicon-pencil"></span>
-      </a>
+    {% if user.is_staff %}
+
     {% endif %}
-    <h2>{{ post.title|title}}</h2>
+    <h2>{{ post.title|title}}
+      <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-default">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+      </a>
+    </h2>
     <p>{{ post.text|safe|linebreaksbr }}</p>
   </div>
   <!-- div para los comentarios -->

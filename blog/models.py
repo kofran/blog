@@ -33,7 +33,7 @@ class Comment(models.Model):
         self.save()
     # motodo para obtener titulo
     def __str__(self):
-        return self.text
+        return '%s || %s || %s' % (self.postid, self.author, self.text)
 
     # motodo para obtener titulo
     # def __str__(self):
