@@ -4,17 +4,16 @@ A simple blog written in Django by [Kofran](http://blog.kofran.com)
 ## Disclaimer
 This project is in a very early development state. **I really not recomend for production use**.
 
-### Version 0.1
+### Version 0.2
 
 ### What features the blog has?
 At the moment the blog has a very little features like:
-- home page.
+- home page now also include pagination.
+- right panel.
 - writter page. (administrator user).
 - edition page. (administrator user).
-
-### What kind of features are planned for next version?
-- register & login system.
-- comments for logged users.
+- users can register (reCAPTCHA was implemented to avoid bots).
+- users can make comments in posts.
 
 ### Requeriments
 - Django version >= 1.11 .
