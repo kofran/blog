@@ -7,7 +7,7 @@
       <!-- <h3><a href="">{{ post.title}}</a></h3> -->
       <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title|title}}</a></h3>
       <!-- <p>{{ post.text|linebreaksbr }}</p> -->
-      <p>{{ post.text|safe|linebreaksbr|slice:"255" }}</p>
+      <p>{{ post.text|safe|linebreaksbr|truncatewords:20 }}</p>
       <p><a href="{% url 'post_detail' pk=post.pk %}"><i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Leer mas...</a></p>
       <p>Publicado: {{ post.published_date|date:"j/n/Y" }}  por {{ post.author }}</p>
     </div>
