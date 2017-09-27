@@ -22,3 +22,15 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+    def clean_email(self):
+        # get the email
+        email = self.cleaned_data.get('email')
+
+        # check if exist
+        try:
+            match = User.objects.get(email=email)
+        except User.DoesNotExist:
+            #not exist
+            return email
+        raise forms.ValidationError('This email address is already in use.')
